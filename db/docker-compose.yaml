@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  write-mysql:
+    build:
+      context: ./main
+      dockerfile: Dockerfile
+    container_name: write-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cassette
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "3461:3306"
+    volumes:
+      - ./mainData:/var/lib/mysql
+    networks:
+      - db-network
+
+  read-mysql:
+    build:
+      context: ./repl
+      dockerfile: Dockerfile
+    container_name: read-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cassette
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "3462:3306"
+    volumes:
+      - ./replData:/var/lib/mysql
+    networks:
+      - db-network
+
+networks:
+  db-network:
+    driver: bridge
