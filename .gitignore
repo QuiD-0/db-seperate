@@ -1,1 +1,4 @@
 .idea/**
+
+/db/mainData
+/db/replData
