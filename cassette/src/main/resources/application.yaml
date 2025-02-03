@@ -1,1 +1,21 @@
-spring.application.name=cassette
+spring:
+  application:
+    name: cassette
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      show_sql: true
+      format_sql: true
+    open-in-view: false
+datasource:
+  main:
+    url: jdbc:mysql://localhost:3461/cassette
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  replication:
+    url: jdbc:mysql://localhost:3462/cassette
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
