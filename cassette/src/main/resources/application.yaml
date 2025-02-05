@@ -3,12 +3,13 @@ spring:
     name: cassette
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       show_sql: true
       format_sql: true
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+      strategy:
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     open-in-view: false
 datasource:
   main:
