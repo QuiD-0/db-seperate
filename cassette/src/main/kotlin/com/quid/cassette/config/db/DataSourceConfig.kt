@@ -11,6 +11,7 @@ import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy
 import javax.sql.DataSource
 
 @Configuration
+@EnableAutoConfiguration(exclude = [DataSourceAutoConfiguration::class])
 @EnableConfigurationProperties(DataSourceProperties::class)
 class DataSourceConfig(
     private val dataSourceProperties: DataSourceProperties
