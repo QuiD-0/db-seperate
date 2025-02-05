@@ -1,2 +1,2 @@
 FROM mysql:latest
-ADD ./my.cnf /etc/mysql/my.cnf
+ADD repl.cnf /etc/mysql/my.cnf

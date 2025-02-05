@@ -2,3 +2,4 @@
 log_bin = mysql-bin
 server_id = 10
 binlog_do_db=cassette
+default_authentication_plugin=mysql_native_password

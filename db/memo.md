@@ -19,7 +19,7 @@ mysql 9.2 버전 커맨드
 
 -> main의 IPv4Address 메모해두기
 
-`docker exec -it write-mysql`을 통해 write-mysql 컨테이너에 접속
+`docker exec -it $container mysql -u $user -p`을 통해 write-mysql 컨테이너에 접속
 
 `SHOW REPLICA STATUS\G` 명령어를 통해 현재 상태 확인
 
@@ -31,15 +31,18 @@ mysql 9.2 버전 커맨드
 
 file과 position을 기억해두기
 
-`docker exec -it read-mysql`을 통해 read-mysql 컨테이너에 접속
+`docker exec -it $container mysql -u $user -p`을 통해 read-mysql 컨테이너에 접속
 
 `CHANGE REPLICATION SOURCE TO
-SOURCE_HOST='${master IP}',
+SOURCE_HOST='source-ip',
 SOURCE_USER='user',
 SOURCE_PASSWORD='password',
-SOURCE_LOG_FILE='${master File}',
-SOURCE_LOG_POS=${master Position},;
+SOURCE_LOG_FILE='file',
+SOURCE_LOG_POS=position,
+GET_SOURCE_PUBLIC_KEY=1;
 `
+
+`START REPLICA;`
 
 `SHOW REPLICA STATUS\G` 명령어를 통해 현재 상태 확인
 
