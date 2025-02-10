@@ -7,7 +7,6 @@ data class CreateCassetteDto(
     val owner: String,
     val title: String,
     val description: String,
-    val playList: List<CreatePlayListDto>
 ) {
     fun toCassette(): Cassette {
         return Cassette(
@@ -15,10 +14,6 @@ data class CreateCassetteDto(
             title = title,
             description = description
         )
-    }
-
-    fun toPlayList(cassetteId: Long): List<PlayList> {
-        return playList.map { it.toPlayList(cassetteId) }
     }
 }
 

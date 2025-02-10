@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 class PlayListJdbcRepository(
     private val jdbc: NamedParameterJdbcTemplate
 ) {
-    fun saveAll(dto: List<PlayListWriteDto>) {
+    fun saveAll(dto: List<PlayListJdbcBulkWriteDto>) {
         val query = """
             INSERT INTO playlist (cassette_id, title, link, created_at)
             VALUES (:cassetteId, :title, :link, :createdAt)
@@ -30,7 +30,7 @@ class PlayListJdbcRepository(
     }
 }
 
-data class PlayListWriteDto(
+data class PlayListJdbcBulkWriteDto(
     val cassetteId: Long,
     val title: String,
     val link: String,
