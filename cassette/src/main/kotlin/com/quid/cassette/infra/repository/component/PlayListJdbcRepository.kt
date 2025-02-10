@@ -18,6 +18,16 @@ class PlayListJdbcRepository(
 
         jdbc.batchUpdate(query, source)
     }
+
+    fun deleteAllById(playList: List<Long>) {
+        val query = """
+            DELETE FROM playlist
+            WHERE id IN (:ids)
+        """.trimIndent()
+        val source = MapSqlParameterSource().addValue("ids", playList)
+
+        jdbc.update(query, source)
+    }
 }
 
 data class PlayListWriteDto(

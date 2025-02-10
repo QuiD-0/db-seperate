@@ -13,6 +13,7 @@ data class CassetteEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val owner: String,
+    val title: String,
     val description: String,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime? = null
