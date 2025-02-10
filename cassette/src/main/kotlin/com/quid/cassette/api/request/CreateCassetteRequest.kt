@@ -4,4 +4,5 @@ data class CreateCassetteRequest(
     val owner: String,
     val title: String,
     val description: String,
+    val playList: List<CreatePlayListRequest>
 )

@@ -1,7 +1,6 @@
 package com.quid.cassette.api
 
 import com.quid.cassette.api.request.CreateCassetteRequest
-import com.quid.cassette.api.request.CreatePlayListRequest
 import com.quid.cassette.api.response.CassetteInfoResponse
 import com.quid.cassette.application.CassetteCommand
 import com.quid.cassette.application.CassetteQuery
@@ -20,18 +19,17 @@ class CassetteController(
     private val command: CassetteCommand,
     private val query: CassetteQuery
 ) {
-    @PostMapping()
+    @PostMapping
     fun createCassette(
-        @RequestBody cassette: CreateCassetteRequest,
-        @RequestBody playList: List<CreatePlayListRequest>
+        @RequestBody request: CreateCassetteRequest,
     ) {
         command.createCassette(
             CreateCassetteDto(
-                owner = cassette.owner,
-                title = cassette.title,
-                description = cassette.description,
+                owner = request.owner,
+                title = request.title,
+                description = request.description,
             ),
-            playList.map {
+            request.playList.map {
                 CreatePlayListDto(
                     title = it.title,
                     link = it.link
@@ -40,9 +38,9 @@ class CassetteController(
         )
     }
 
-    @GetMapping("/{userId}")
-    fun getCassette(@PathVariable userId: Long): CassetteInfoResponse {
-        return query.getCassetteBy(userId)
+    @GetMapping("/{id}")
+    fun getCassette(@PathVariable id: Long): CassetteInfoResponse {
+        return query.getCassetteBy(id)
             .run { CassetteInfoResponse(this) }
     }
 }

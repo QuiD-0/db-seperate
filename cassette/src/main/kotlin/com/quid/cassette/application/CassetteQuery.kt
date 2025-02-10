@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 class CassetteQuery(
     private val cassetteRepository: CassetteRepository
 ) {
-    fun getCassetteBy(userId: Long): Cassette {
-        return cassetteRepository.findById(userId)
+    fun getCassetteBy(id: Long): Cassette {
+        return cassetteRepository.findById(id)
     }
 }
