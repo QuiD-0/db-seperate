@@ -8,13 +8,12 @@ import jakarta.persistence.Table
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "cassette")
-data class CassetteEntity(
+@Table(name = "cassette_playlist")
+data class CassettePlayListEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    val owner: String,
-    val description: String,
-    val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime? = null
+    val cassetteId: Long,
+    val musicId: Long,
+    val createdAt: LocalDateTime
 ) {
 }
