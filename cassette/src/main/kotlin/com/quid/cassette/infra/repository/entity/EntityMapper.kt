@@ -1,8 +1,8 @@
 package com.quid.cassette.infra.repository.entity
 
 import com.quid.cassette.domain.Cassette
-import com.quid.cassette.domain.CassettePlayList
-import com.quid.cassette.domain.Music
+import com.quid.cassette.domain.PlayList
+import com.quid.cassette.infra.repository.module.PlayListWriteDto
 
 object EntityMapper {
     fun toCassette(entity: CassetteEntity): Cassette {
@@ -25,39 +25,36 @@ object EntityMapper {
         )
     }
 
-    fun toEntity(cassettePlayList: CassettePlayList): CassettePlayListEntity {
-        return CassettePlayListEntity(
+    fun toEntity(cassettePlayList: PlayList): PlayListEntity {
+        return PlayListEntity(
             id = cassettePlayList.id,
             cassetteId = cassettePlayList.cassetteId,
-            musicId = cassettePlayList.musicId,
+            title = cassettePlayList.title,
+            link = cassettePlayList.link,
             createdAt = cassettePlayList.createdAt
         )
     }
 
-    fun toCassettePlayList(entity: CassettePlayListEntity): CassettePlayList {
-        return CassettePlayList(
+    fun toWriteDto(playList: PlayList): PlayListWriteDto {
+        return PlayListWriteDto(
+            cassetteId = playList.cassetteId,
+            title = playList.title,
+            link = playList.link,
+            createdAt = playList.createdAt
+        )
+    }
+
+    fun toWriteDto(playList: List<PlayList>): List<PlayListWriteDto> {
+        return playList.map { toWriteDto(it) }
+    }
+
+    fun toCassettePlayList(entity: PlayListEntity): PlayList {
+        return PlayList(
             id = entity.id,
             cassetteId = entity.cassetteId,
-            musicId = entity.musicId,
-            createdAt = entity.createdAt
-        )
-    }
-
-    fun toMusic(entity: MusicEntity): Music {
-        return Music(
-            id = entity.id,
             title = entity.title,
-            artist = entity.artist,
-            link = entity.link
-        )
-    }
-
-    fun toEntity(music: Music): MusicEntity {
-        return MusicEntity(
-            id = music.id,
-            title = music.title,
-            artist = music.artist,
-            link = music.link
+            link = entity.link,
+            createdAt = entity.createdAt
         )
     }
 }

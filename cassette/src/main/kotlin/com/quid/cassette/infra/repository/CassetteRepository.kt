@@ -1,6 +1,7 @@
 package com.quid.cassette.infra.repository
 
 import com.quid.cassette.domain.Cassette
+import com.quid.cassette.infra.repository.module.CassetteJpaRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
 import com.quid.cassette.infra.repository.entity.EntityMapper as mapper
@@ -15,7 +16,7 @@ class CassetteRepository(
             .let { mapper.toCassette(it) }
     }
 
-    fun findById(id: Long): Cassette? {
+    fun findById(id: Long): Cassette {
         return cassetteJpaRepository.findByIdOrNull(id)
             ?.let { mapper.toCassette(it) }
             ?: throw IllegalArgumentException("Cassette not found")
