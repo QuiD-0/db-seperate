@@ -2,7 +2,7 @@ package com.quid.cassette.infra.repository.entity
 
 import com.quid.cassette.domain.Cassette
 import com.quid.cassette.domain.PlayList
-import com.quid.cassette.infra.repository.module.PlayListWriteDto
+import com.quid.cassette.infra.repository.component.PlayListWriteDto
 
 object EntityMapper {
     fun toCassette(entity: CassetteEntity): Cassette {

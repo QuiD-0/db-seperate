@@ -1,4 +1,4 @@
-package com.quid.cassette.infra.repository.module
+package com.quid.cassette.infra.repository.component
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
